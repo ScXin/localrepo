@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1385219535 source:d:\workspace\request\db_01\main.cpp
+	"def.h"
+	"BMgr.h"
+	"DSMgr.h"
+	<cstring>
+	<iostream>
+	<fstream>
+	<ctime>
+	<stdlib.h>
+
+1385218213 d:\workspace\request\db_01\dsmgr.h
+	"def.h"
+	<string>
+
+1385190301 d:\workspace\request\db_01\declaration.h
+	<string>
+
+1385220342 d:\workspace\request\db_01\bmgr.h
+	"def.h"
+	"DSMgr.h"
+
+1385219482 source:d:\workspace\request\db_01\bmgr.cpp
+	"BMgr.h"
+	<ctime>
+
+1385221348 d:\workspace\request\db_01\def.h
+	<iostream>
+
+1385218128 source:d:\workspace\request\db_01\d.cpp
+	"BMgr.h"
+	"DSMgr.h"
+	<fstream>
+	<iostream>
+
+1385215896 source:d:\workspace\request\db_01\def.cpp
+	"def.h"
+
+1385220649 source:d:\workspace\request\db_01\dsmgr.cpp
+	"BMgr.h"
+	"DSMgr.h"
+	<fstream>
+	<iostream>
+
