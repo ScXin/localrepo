@@ -1,0 +1,55 @@
+
+import traceback
+import threading
+import subprocess
+from decimal import Decimal
+import time
+class MainClass:
+    def __init__(self):
+        isRead=self.isRead()
+        if isRead==False:   # if isRead==False,return
+           return
+        adjList=[];
+        with open("/home/ioc/ADJRecord.txt","r") as adjf:
+              for line in adjf:
+                line=line.strip('\n')
+                adjList.append(line)
+        adjf.close();
+        for i in range(0,271):
+            if self.isRead()==False:
+               while True:
+                     if self.isRead()==True:
+                        break;
+                     else:
+                        time.sleep(1)
+            for adj in adjList:
+                #preadjVal= Decimal(epics.caget(adj)).quantize(Decimal('0.0000'))
+                #postadjVal=preadjVal+Decimal(random.uniform(-2,2)/100)).quantize(Decimal('0.0000')
+                newadjVal=Decimal(random.uniform(-2,2)/100).quantize(Decimal('0.0000'))
+                #newadjVal=0;
+                epics.caput(adj, newadjVal)     # change the value of ADJVal
+            time.sleep(35)   #sleep 70 seconds
+            loader=subprocess.Popen(["/usr/bin/python", "/home/ioc/beamdata/data.py"])
+            returncode=loader.wait()
+            print ("returncode= %s" %(returncode))
+        print("END") 
+    
+    @staticmethod 
+    def isRead():
+        kickList=[];
+        with open("/home/ioc/kick.txt","r") as kickf: 
+              for line in kickf:
+                line=line.strip('\n')
+                kickList.append(line)
+        kickf.close()
+        isRead = False
+        for kick in kickList:
+            kickVal=epics.caget(kick)
+            if kickVal!=1:
+               isRead=True
+        return isRead
+
+if __name__ == "__main__":
+     MainClass()
+
+             

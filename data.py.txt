@@ -1,0 +1,53 @@
+import epics
+import time
+import sys
+from decimal import Decimal
+class MainClass:
+    def __init__(self):
+        isRead=self.isRead()
+        if isRead==False:   # if isRead==False,return
+           return
+
+        # create head line
+
+        #fileName=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime());
+        dataf=open("/home/ioc/beamdata/beamdata.csv","a")
+        # read total PV name from "/home/ioc/totalRecord.txt"
+        totalList=[];
+        with open("/home/ioc/totalRecord.txt","r") as totalf:
+              for line in totalf:
+                line=line.strip('\n')
+                totalList.append(line)
+        totalf.close()
+        tuneList=[]    # read tune PV name from "/home/ioc/tune.txt
+        with open("/home/ioc/tune.txt","r") as tunef:
+            for line in tunef:
+              line=line.strip('\n')
+              tuneList.append(line)
+        tunef.close()
+        # main loop to write PV value
+        for i in range(0,1):    ### loop 1000 time to get data
+           # dataf.write(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())+" ")
+            if self.isRead()==False:
+               while True:
+                     if self.isRead()==True:
+                        break;
+                     else:
+                        time.sleep(1)
+            dataf.write(str(time.time())+",")
+            energy=epics.caget('RNG:ENG')
+            dataf.write(str(energy)+",")
+            current=Decimal(epics.caget('RNG:BEAM:CURR')).quantize(Decimal('0000'))
+            dataf.write(str(current)+",")
+           # read PV value named TOTAL and write it into data.csv
+            for total in totalList:
+                totalVal= Decimal(epics.caget(total)).quantize(Decimal('0.0000'))
+                dataf.write(str(totalVal)+",")
+            # read PV value named tune and write it into data.csv
+            for tune in tuneList:
+                tuneVal=Decimal(epics.caget(tune)).quantize(Decimal('0.0000'))
+                dataf.write(str(tuneVal)+",")
+            # read PV value named lifetime value and write it into data.csv
+            lifetimeVal=Decimal(epics.caget('RNG:BEAM:LIFE')).quantize(Decimal('0.0000'))
+            dataf.write(str(lifetimeVal))
+            dataf.write('\n')
