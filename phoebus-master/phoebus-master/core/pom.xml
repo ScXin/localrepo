@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>core</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>framework</module>
+    <module>types</module>
+    <module>util</module>
+    <module>vtype</module>
+    <module>pv</module>
+    <module>security</module>
+    <module>formula</module>
+    <module>ui</module>
+    <module>logbook</module>
+    <module>email</module>
+  </modules>
+  <parent>
+  	<groupId>org.phoebus</groupId>
+  	<artifactId>parent</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  </parent>
+</project>

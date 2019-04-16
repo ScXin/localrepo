@@ -1,0 +1,19 @@
+<project default="core-framework">
+  <import file="../../dependencies/ant_settings.xml"/>
+
+  <target name="core-framework">
+    <mkdir dir="${classes}"/>
+    <javac destdir="${classes}" debug="${debug}">
+      <src path="${src}"/>
+      <classpath>
+        <fileset dir="${dependencies}/phoebus-target/target/lib">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+    </javac>
+  	<jar destfile="${build}/core-framework-${version}.jar">
+      <fileset dir="${classes}"/>
+      <fileset dir="${resources}"/>
+    </jar>
+  </target>
+</project>
