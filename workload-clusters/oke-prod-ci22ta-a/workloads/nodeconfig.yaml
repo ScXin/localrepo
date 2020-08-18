@@ -1,0 +1,615 @@
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-master-0
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.80/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-master-1  
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.78/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-master-2   
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.82/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-1
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.73/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-2
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.74/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-3
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.55/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-4
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.69/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1               
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-5
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.63/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-6
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.153/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-7
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.161/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-8
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.92.165/22"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-9
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.71/23"
+    interfaceName: "GigabitEthernet0/4/0"
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-10
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.10/22"
+    interfaceName: "GigabitEthernet0/4/0"    
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-11
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.179/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-12
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.172/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-13
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.182/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-14
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.147/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-15
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.183/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-16
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.204/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-17
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.235/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-18
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.61/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-19
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.238/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-20
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.239/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-21
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.225/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-22
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.232/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-23
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.236/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-24
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.234/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-25
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.201/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-26
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.46/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-27
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.52/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-28
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.55/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-29
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.58/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-30
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.56/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-1
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.228/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-2
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.247/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-3
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.241/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-4
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.249/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-5
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.250/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-6
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.7/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-7
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.1/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-8
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.242/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-9
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.12/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-10
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.255/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-11
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.248/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-12
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.253/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-13
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.2/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-14
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.125/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-15
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.32/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-16
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.39/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-17
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.51/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-18
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.61/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-19
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.57/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-20
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.243/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-21
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.93.3/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-22
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.31/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-23
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.66/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-24
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.63/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-25
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.64/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-26
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.72/22"
+    interfaceName: "GigabitEthernet0/4/0" 
+---
+apiVersion: nodeconfig.contiv.vpp/v1
+kind: NodeConfig
+metadata:
+  name: oke-prod-ci22ta-a-worker-zeus-27
+  namespace: kube-system
+spec:
+  mainVPPInterface:
+    ip: "10.241.94.59/22"
+    interfaceName: "GigabitEthernet0/4/0" 

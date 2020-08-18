@@ -1,0 +1,903 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-17
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client17
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-18
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client18
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-19
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client19
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-20
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client20
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-21
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client21
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-22
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client22
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-23
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client23
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: zeus
+  name: zeus-elasticflow-jfk01-24
+  namespace: iaas-zeus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zeus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        pod.boostport.com/vault-approle: iaas-zeus
+        pod.boostport.com/vault-init-container: get-vault-token
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: zeus
+        app.kubernetes.io/name: zeus
+    spec:
+      containers:
+      - name: renewtoken-vault-sidecar
+        image: registry-qa.webex.com/ciap/renewtoken-vault-sidecar:24
+        imagePullPolicy: IfNotPresent
+        args: ["8", "VAULT_TOKE_RENEW_NOTIFICATION", "http://triggerchain.prv.webex.com/notificationhub/notifydirectly"]
+        volumeMounts:
+          - mountPath: /var/run/secrets/boostport.com
+            name: vault-token
+        livenessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+        readinessProbe:
+          exec:
+            command:
+            - /bin/bash
+            - ./checkhealth.sh
+      - env:
+        - name: ZEUS_KAFKA_BOOTSTRAP_SERVER
+          value: 10.250.43.43:9092,10.250.43.44:9092,10.250.43.45:9092
+        - name: OKE_POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: ZEUS_KAFKA_CLIENT_ID
+          value: client24
+        - name: ELASTIFLOW_ES_HOST_1
+          value: 10.250.79.198:9200
+        - name: ELASTIFLOW_ES_HOST_2
+          value: 10.250.79.200:9200
+        - name: ZEUS_KAFKA_TOPIC
+          value: zeus
+        - name: ZEUS_KAFKA_CONSUMER_THREADS
+          value: "8"
+        - name: ELASTIFLOW_RESOLVE_IP2HOST
+          value: "false"
+        - name: ELASTIFLOW_NAMESERVER
+          value: 10.240.240.1
+        image: registry-qa.webex.com/ciap/zeus-elasticflow:0.0.22
+        imagePullPolicy: IfNotPresent
+        name: zeus-elasticflow
+        resources:
+          limits:
+            cpu: "15"
+            memory: 63Gi
+          requests:
+            cpu: 100m
+            memory: 2Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsUser: 0
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      dnsPolicy: ClusterFirst
+      initContainers:
+      - env:
+        - name: VAULT_ROLE_ID
+          value: 1f77368e-9119-2aab-0f89-ff8eaae34449
+        image: registry-qa.webex.com/oke/kubernetes-vault-init:0.0.1
+        imagePullPolicy: IfNotPresent
+        name: get-vault-token
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /var/run/secrets/boostport.com
+          name: vault-token
+      nodeSelector:
+        kubernetes.io/hostname: oke-prod-ci22sj-a-worker-zeus-8
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        key: app
+        operator: Equal
+        value: iaas-zeus
+      volumes:
+      - emptyDir: {}
+        name: vault-token
