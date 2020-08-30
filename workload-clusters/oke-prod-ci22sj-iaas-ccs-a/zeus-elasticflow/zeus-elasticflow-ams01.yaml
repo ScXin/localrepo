@@ -6,7 +6,7 @@ metadata:
   name: zeus-elasticflow-ams01
   namespace: iaas-zeus
 spec:
-  replicas: 227
+  replicas: 235
   selector:
     matchLabels:
       app.kubernetes.io/name: zeus
